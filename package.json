@@ -12,7 +12,7 @@
     "rimraf": "rm -rf node_modules && npm i",
     "lint": "eslint --fix '{src,test}/**/*.ts'",
     "pretty": "prettier --write \"src/**/*.ts\" \"test/**/*.spec.ts\"",
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
