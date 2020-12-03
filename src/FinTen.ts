@@ -9,6 +9,7 @@ class FinTen {
   private _password = 'tsfinance';
   private _token: string | null = null;
   private http: AxiosInstance;
+
   constructor(http: AxiosInstance = axios) {
     this.http = http;
     this.http.defaults.baseURL = FinTen.FINTEN_URL;
