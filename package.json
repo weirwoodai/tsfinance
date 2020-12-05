@@ -1,6 +1,6 @@
 {
   "name": "tsfinance",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "TypeScript library for NodeJS to use the FinTen API",
   "main": "dist/FinTen.js",
   "types": "dist/FinTen.d.ts",
