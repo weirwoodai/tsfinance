@@ -3,7 +3,7 @@ import GetFilingsResponse from './GetFilingsResponse.interface';
 import GetTickersResponse from './GetTickersResponse.interface';
 import LoginResponse from './LoginResponse.interface';
 
-class FinTen {
+export class FinTen {
   private static readonly FINTEN_URL = 'https://finten.weirwood.ai';
   private _username = 'tsfinance';
   private _password = 'tsfinance';
