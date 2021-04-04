@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
-import GetFilingsResponse from './GetFilingsResponse.interface';
-import GetTickersResponse from './GetTickersResponse.interface';
-import LoginResponse from './LoginResponse.interface';
+import { GetFilingsResponse } from './GetFilingsResponse.interface';
+import { GetTickersResponse } from './GetTickersResponse.interface';
+import { LoginResponse } from './LoginResponse.interface';
 
 export class FinTen {
   private static readonly FINTEN_URL = 'https://finten.weirwood.ai';

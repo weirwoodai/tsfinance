@@ -1,4 +1,4 @@
-interface Filing {
+export interface Filing {
   EntityRegistrantName: string;
   CurrentFiscalYearEndDate: string;
   EntityCentralIndexKey: number;
@@ -71,5 +71,3 @@ interface Filing {
   ROE: number | null;
   ROS: number | null;
 }
-
-export default Filing;

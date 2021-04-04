@@ -1,8 +1,8 @@
-import { expect } from 'chai';
-import FinTen from '../src/FinTen';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import GetFilingsResponse from '../src/GetFilingsResponse.interface';
+import { expect } from 'chai';
+import { FinTen } from '../src/FinTen';
+import { GetFilingsResponse } from '../src/GetFilingsResponse.interface';
 
 describe('FinTen tests', function () {
   it('should create a new FinTen instance', () => {

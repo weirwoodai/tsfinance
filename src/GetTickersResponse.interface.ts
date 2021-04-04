@@ -1,5 +1,3 @@
-interface GetTickersResponse {
+export interface GetTickersResponse {
   tickers: string[];
 }
-
-export default GetTickersResponse;

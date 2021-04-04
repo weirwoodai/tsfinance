@@ -1,4 +1,4 @@
-interface CompanyInfo {
+export interface CompanyInfo {
   EntityCentralIndexKey: number;
   StandardIndustrialClassification: number;
   EntityRegistrantName: string;
@@ -7,5 +7,3 @@ interface CompanyInfo {
   IndustryTitle: string;
   TradingSymbol: string | null;
 }
-
-export default CompanyInfo;
