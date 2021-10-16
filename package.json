@@ -9,11 +9,13 @@
     "test": "mocha -r dotenv/config -r ts-node/register test/**/*.spec.ts",
     "test-debug": "mocha -r dotenv/config -r ts-node/register test/**/*.spec.ts --timeout 300000",
     "full-test": "mocha --forbid-only -r dotenv/config -r ts-node/register test/**/*.spec.ts",
-    "rimraf": "rimraf node_modules && npm i",
+    "rimraf": "rimraf node_modules && npm ci",
     "lint": "eslint --fix '{src,test}/**/*.ts'",
-    "pretty": "prettier --write \"src/**/*.ts\" \"test/**/*.spec.ts\"",
+    "pretty": "prettier --write  '{src,test}/**/*.ts'",
+    "pretty:check": "prettier --check  '{src,test}/**/*.ts'",
     "format": "npm run pretty",
-    "build": "rimraf dist && tsc",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -38,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pretty && npm run lint && npm run test && git add -A",
+      "pre-commit": "npm run pretty:check && npm run lint && npm run test",
       "pre-push": "npm run test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
