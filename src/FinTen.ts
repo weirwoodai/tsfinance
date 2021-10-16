@@ -1,7 +1,13 @@
 import axios, { AxiosInstance } from 'axios';
+import yahooFinance from 'yahoo-finance2';
+import {
+  HistoricalOptions,
+  HistoricalResult
+} from 'yahoo-finance2/dist/esm/src/modules/historical';
 import { GetFilingsResponse } from './GetFilingsResponse.interface';
 import { GetTickersResponse } from './GetTickersResponse.interface';
 import { LoginResponse } from './LoginResponse.interface';
+import { isValidPeriod, Period } from './Period.interace';
 
 export class FinTen {
   private static readonly FINTEN_URL = 'https://finten.weirwood.ai';
@@ -48,7 +54,7 @@ export class FinTen {
     } catch (ex) {
       if (!ex.response) throw ex;
 
-      const { status, data } = ex;
+      const { status, data } = ex.response;
       if (status !== 400) throw ex;
       if (data.error !== 'Invalid credentials') throw ex;
       throw new Error(data.error);
@@ -82,6 +88,16 @@ export class FinTen {
       this._token = null;
       return await this.getFilings(ticker);
     }
+  }
+
+  async getPrices(ticker: string, period?: Period): Promise<HistoricalResult> {
+    if (period && !isValidPeriod(period)) throw new Error('Invalid period!');
+    const options: HistoricalOptions = {
+      period1: period?.start || '1900-01-01',
+      ...(period?.end ? { period2: period.end } : {}) // only add period2 prop if period.end exists
+    };
+    const prices = await yahooFinance.historical(ticker, options);
+    return prices;
   }
 }
 
