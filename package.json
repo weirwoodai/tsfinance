@@ -6,20 +6,19 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "start": "ts-node -r dotenv/config src/main.ts",
+    "pretest": "npm run build",
     "test": "mocha -r dotenv/config -r ts-node/register test/**/*.spec.ts",
-    "test-debug": "mocha -r dotenv/config -r ts-node/register test/**/*.spec.ts --timeout 300000",
-    "full-test": "mocha --forbid-only -r dotenv/config -r ts-node/register test/**/*.spec.ts",
-    "rimraf": "rimraf node_modules && npm ci",
-    "lint": "eslint --fix '{src,test}/**/*.ts'",
+    "test:debug": "npm run pretest && mocha -r dotenv/config -r ts-node/register test/**/*.spec.ts --timeout 300000",
+    "test:full": "npm run pretest && mocha --forbid-only -r dotenv/config -r ts-node/register test/**/*.spec.ts",
+    "lint": "eslint '{src,test}/**/*.ts'",
     "pretty": "prettier --write  '{src,test}/**/*.ts'",
     "pretty:check": "prettier --check  '{src,test}/**/*.ts'",
-    "format": "npm run pretty",
     "prebuild": "rimraf dist",
     "build": "tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
+    "version": "npm run pretty:check",
     "postversion": "git push && git push --tags"
   },
   "publishConfig": {
@@ -41,19 +40,18 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run pretty:check && npm run lint && npm run test",
-      "pre-push": "npm run test",
+      "pre-push": "npm run test:full",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "homepage": "https://github.com/weirwoodai/tsfinance#readme",
   "dependencies": {
-    "@types/axios": "^0.14.0",
-    "axios": "^0.21.0",
-    "rimraf": "^2.6.3"
+    "axios": "^0.23.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@types/axios": "^0.14.0",
     "@types/dotenv": "^8.2.0",
     "@types/mocha": "^8.0.4",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
@@ -63,15 +61,16 @@
     "chai-as-promised": "^7.1.1",
     "chai-http": "^4.3.0",
     "chai-interface": "^2.0.3",
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.2.0",
     "husky": "^4.3.0",
     "mocha": "^8.2.1",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "ts-mockito": "^2.6.1",
-    "ts-node": "^9.1.0",
-    "typescript": "^4.1.2"
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4"
   }
 }
