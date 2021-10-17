@@ -1,6 +1,6 @@
 {
   "name": "@weirwoodai/tsfinance",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "TypeScript library for NodeJS to use the FinTen API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,12 +15,11 @@
     "pretty:check": "prettier --check  '{src,test}/**/*.ts'",
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "prepare": "npm run build",
+    "prepare": "husky install",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run pretty:check",
-    "postversion": "git push && git push --tags",
-    "prepare": "husky install"
+    "postversion": "git push && git push --tags"
   },
   "publishConfig": {
     "access": "public"
@@ -40,7 +39,8 @@
   },
   "homepage": "https://github.com/weirwoodai/tsfinance#readme",
   "dependencies": {
-    "axios": "^0.23.0"
+    "axios": "^0.23.0",
+    "yahoo-finance2": "^1.14.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
