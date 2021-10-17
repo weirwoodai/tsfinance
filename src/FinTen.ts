@@ -96,8 +96,7 @@ export class FinTen {
       period1: period?.start || '1900-01-01',
       ...(period?.end ? { period2: period.end } : {}) // only add period2 prop if period.end exists
     };
-    const prices = await yahooFinance.historical(ticker, options);
-    return prices;
+    return await yahooFinance.historical(ticker, options);
   }
 }
 

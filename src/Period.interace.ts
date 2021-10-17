@@ -7,5 +7,5 @@ export const isValidPeriod = (period: Period): boolean => {
   if (!end) return start !== '';
   const startDate = new Date(start);
   const endDate = new Date(end);
-  return startDate.getTime() > endDate.getTime();
+  return startDate.getTime() < endDate.getTime();
 };
